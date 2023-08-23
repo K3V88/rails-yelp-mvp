@@ -1,12 +1,30 @@
-<h1>Restaurants</h1>
+<div class="container mt-4">
+  <h1>Restaurants</h1>
 
-<ul>
-  <% @restaurants.each do |restaurant| %>
-    <li>
-      <%= link_to restaurant.name, restaurant_path(restaurant) %> -
-      <%= restaurant.address %> (Category: <%= restaurant.category %>)
-    </li>
-  <% end %>
-</ul>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Category</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @restaurants.each do |restaurant| %>
+        <tr>
+          <td><%= restaurant.name %></td>
+          <td><%= restaurant.address %></td>
+          <td><%= restaurant.category %></td>
+          <td>
+            <%= link_to 'Show', restaurant_path(restaurant), class: 'btn btn-primary btn-sm me-2' %>
+            <%= link_to 'Edit', edit_restaurant_path(restaurant), class: 'btn btn-warning btn-sm me-2' %>
+            <%= link_to 'Delete', restaurant_path(restaurant), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= link_to "New Restaurant", new_restaurant_path %>
+  <%= link_to 'New Restaurant', new_restaurant_path, class: 'btn btn-primary' %>
+</div>

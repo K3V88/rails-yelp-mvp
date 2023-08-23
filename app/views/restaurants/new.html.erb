@@ -1,10 +1,18 @@
-<h1>Create a New Restaurant</h1>
+<div class="container mt-4">
+  <h1>Create a New Restaurant</h1>
 
-<%= simple_form_for @restaurant do |f| %>
-  <%= f.input :name, label: "Restaurant Name" %>
-  <%= f.input :address, label: "Address" %>
-  <%= f.input :category, label: "Category", collection: ["chinese", "italian", "japanese", "french", "belgian"] %>
-  <%= f.button :submit, class: "btn btn-primary" %>
-<% end %>
+  <%= simple_form_for @restaurant do |f| %>
+    <div class="mb-3">
+      <%= f.input :name, label: "Restaurant Name", class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= f.input :address, label: "Address", class: "form-control" %>
+    </div>
+    <div class="mb-3">
+      <%= f.input :category, label: "Category", collection: ["chinese", "italian", "japanese", "french", "belgian"], class: "form-select" %>
+    </div>
+    <%= f.button :submit, "Create Restaurant", class: "btn btn-primary" %>
+  <% end %>
 
-<%= link_to "Back", restaurants_path %>
+  <%= link_to "Back", restaurants_path, class: "btn btn-secondary mt-3" %>
+</div>
