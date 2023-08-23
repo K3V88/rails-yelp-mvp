@@ -3,19 +3,19 @@
 <p><strong>Address:</strong> <%= @restaurant.address %></p>
 <p><strong>Category:</strong> <%= @restaurant.category %></p>
 
-<h2>Reviews</h2>
-<% if @restaurant.reviews.any? %>
-  <ul>
-    <% @restaurant.reviews.each do |review| %>
-      <li>
-        Rating: <%= review.rating %>
-        Content: <%= review.content %>
-      </li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>No reviews yet.</p>
-<% end %>
 
 <%= link_to "Edit", edit_restaurant_path(@restaurant) %> |
-<%= link_to "Back", restaurants_path %>
+<%= link_to "Back", restaurants_path %> |
+<%= link_to "Post a Review", new_restaurant_review_path(@restaurant) %>
+
+
+<div>
+<h3>Reviews</h3>
+<ul>
+<% @restaurant.reviews.each do |review| %>
+<li><%= review.content %> | <%= link_to "Delete",
+review_path(review),
+  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></li>
+<% end  %>
+</ul>
+</div>
